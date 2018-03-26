@@ -39,7 +39,6 @@ namespace CTimer
                 timersList.Items.Add(inputName.GetLineText(0));
                 currentTimer.Text = "Current time: " + manager.GetTimer.GetTimeRemaining.ToString("dd") + 
                     " days " + manager.GetTimer.GetTimeRemaining.ToString("HH:mm:ss");
-                NameL.Content = manager.GetTimer.Name;
                 inputName.Clear();
                 setDate.Text = "";
                 exeptionMessages.Content = "";
@@ -56,7 +55,6 @@ namespace CTimer
         private void RenameTimerClick(object sender, RoutedEventArgs e)
         {
             manager.ModifyTimer(Microsoft.VisualBasic.Interaction.InputBox("Input new name."));
-            NameL.Content = "Current timer: " +  manager.GetTimer.Name;
             timersList.Items[timersList.SelectedIndex] = 
                 timersList.Items[timersList.SelectedIndex].ToString().Replace(timersList.Items[timersList.SelectedIndex].ToString(), manager.GetTimer.Name);
         }
@@ -90,22 +88,18 @@ namespace CTimer
             {
                 currentTimer.Text = "Current time: " + manager.GetTimer.GetTimeRemaining.ToString("dd") +
                     " days " + manager.GetTimer.GetTimeRemaining.ToString("HH:mm:ss");
-                NameL.Content = "Current timer: " + manager.GetTimer.Name;
             }
             else if (hoursCheckBox.IsChecked == true && minutesCheckBox.IsChecked == true && secondsCheckBox.IsChecked == true)
             {
                 currentTimer.Text = "Current time: " + manager.GetTimer.GetTimeRemaining.ToString("HH:mm:ss");
-                NameL.Content = "Current timer: " + manager.GetTimer.Name;
             }
             else if (minutesCheckBox.IsChecked == true && secondsCheckBox.IsChecked == true)
             {
                 currentTimer.Text = "Current time: " + manager.GetTimer.GetTimeRemaining.ToString("mm:ss");
-                NameL.Content = "Current timer: " + manager.GetTimer.Name;
             }
             else if(secondsCheckBox.IsChecked == true)
             {
                 currentTimer.Text = "Current time: " + manager.GetTimer.GetTimeRemaining.ToString("ss");
-                NameL.Content = "Current timer: " + manager.GetTimer.Name;
             }
         }
         private void SaveList(object sender, RoutedEventArgs e)
@@ -142,8 +136,10 @@ namespace CTimer
             manager.Timers = (List<STimer>)serializer.Deserialize(file);
             file.Close();
 
-            foreach (var timer in manager.Timers)
-                timersList.Items.Add(manager.GetTimer.Name);
+            for (int timer = 0; timer < manager.Timers.Count; ++timer)
+            {
+                timersList.Items.Add(manager.Timers[timer].Name);
+            }
         }
         private void ClearListClick(object sender, RoutedEventArgs e)
         {

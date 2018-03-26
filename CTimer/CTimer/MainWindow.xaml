@@ -41,7 +41,6 @@
                 <MenuItem Header="Clear list" Click="ClearListClick"/>
             </MenuItem>
         </Menu>
-        <Label x:Name="NameL" Content="Current timer: " HorizontalAlignment="Left" Margin="247,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="285"/>
         <CheckBox x:Name="daysCheckBox" Content="Days" HorizontalAlignment="Left" Margin="266,360,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <CheckBox x:Name="hoursCheckBox" Content="Hours" HorizontalAlignment="Left" Margin="320,360,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="minutesCheckBox" Content="Minutes" HorizontalAlignment="Left" Margin="21,360,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
